@@ -50,7 +50,93 @@ const getAllVehicles = async (req: Request, res: Response) => {
   }
 };
 
+const getVehicleById = async (req: Request, res: Response) => {
+  // Logic to get a vehicle by ID
+  try{
+
+    const vehicleId = req.params.vehicleId;
+    const result = await vehiclesService.getVehicleById(vehicleId as string);
+
+    if(!result){
+      return res.status(404).json({
+        success: false,
+        message: "Vehicle not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Vehicle retrieved successfully",
+      data: result,
+    })
+  }catch(err: any){
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: err.message,
+    });
+  }
+};
+
+const updateVehicle = async (req: Request, res: Response) => {
+  // Logic to update a vehicle
+
+  try{
+    const {vehicleId} = req.params;
+    const result = await vehiclesService.updateVehicle(vehicleId as string, req.body);
+
+    if(!result){
+      return res.status(404).json({
+        success: false,
+        message: "Vehicle not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Vehicle updated successfully",
+      data: result,
+    })
+
+  }catch(err: any){
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: err.message,
+    });
+  }
+};
+
+const deleteVehicle = async (req: Request, res: Response) => {
+  // Logic to delete a vehicle
+  try{
+    const {vehicleId} = req.params;
+    const result = await vehiclesService.deleteVehicle(vehicleId as string);
+    if(!result){
+      return res.status(404).json({
+        success: false,
+        message: "Vehicle not found",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: "Vehicle deleted successfully",
+      data: result,
+    })
+  }catch(err: any){
+    res.status(500).json({
+      success: false,
+      message: "Server Error",
+      error: err.message,
+    });
+  }
+};
+
 export const vehiclesController = {
   createVehicle,
   getAllVehicles,
+  getVehicleById,
+  updateVehicle,
+  deleteVehicle,
 };

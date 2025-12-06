@@ -23,6 +23,8 @@ const createUser = async (payload: Record<string, unknown>) => {
 
 const signInUser = async (email: string, password: string) => {
 
+  console.log(email , password)
+
     const result = await pool.query(
       `
         SELECT * FROM users WHERE email = $1;
@@ -31,6 +33,9 @@ const signInUser = async (email: string, password: string) => {
     );
   
     const user = result.rows[0];
+
+    console.log(user)
+
     if (!user) {
       return null;
     }
@@ -40,13 +45,19 @@ const signInUser = async (email: string, password: string) => {
       return null;
     }
 
-    const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
-      config.jwt_secret as string,
-      { expiresIn: "1h" }
-    );
+    console.log(isPasswordValid)
 
-    return {user, token};
+     const token = jwt.sign(
+    { name: user.name, email: user.email, role: user.role },
+    config.jwt_secret as string,
+    {
+      expiresIn: "7d",
+    }
+  );
+
+    console.log(token )
+
+    return {token ,user};
 };
 export const AuthService = {
   createUser,

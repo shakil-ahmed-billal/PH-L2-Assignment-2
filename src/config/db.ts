@@ -31,7 +31,19 @@ const initializeDB = async () => {
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`);
 
-  // Bookings table creation
+  // Bookings table creation with the correct logic for PostgreSQL
+await pool.query(`
+  CREATE TABLE IF NOT EXISTS bookings (
+    id SERIAL PRIMARY KEY,
+    customer_id INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    vehicle_id INTEGER NOT NULL REFERENCES vehicles(id) ON DELETE CASCADE,
+    rent_start_date TIMESTAMP NOT NULL,
+    rent_end_date TIMESTAMP NOT NULL CHECK (rent_end_date > rent_start_date),  -- Ensuring rent_end_date is after rent_start_date
+    total_price NUMERIC(10, 2) NOT NULL CHECK (total_price > 0),  -- Ensuring total_price is positive
+    status VARCHAR(50) NOT NULL CHECK (status IN ('active', 'cancelled', 'returned'))
+  );
+`);
+
 };
 
 export { initializeDB, pool };

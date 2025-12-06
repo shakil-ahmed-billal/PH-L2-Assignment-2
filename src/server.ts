@@ -3,6 +3,8 @@ import morgan from "morgan";
 import { initializeDB } from "./config/db";
 import { authRoutes } from "./modules/auth/auth.routes";
 import { vehiclesRouter } from "./modules/vehicles/vehicles.routes";
+import { userRouter } from "./modules/user/user.routes";
+import { bookingRoutes } from "./modules/booking/booking.routes";
 
 
 const app = express();
@@ -20,6 +22,8 @@ initializeDB()
 // Import and use routes
 app.use("/api" , authRoutes);
 app.use("/api", vehiclesRouter);
+app.use("/api" , userRouter);
+app.use("/api" , bookingRoutes);
 
 
 // Test route
