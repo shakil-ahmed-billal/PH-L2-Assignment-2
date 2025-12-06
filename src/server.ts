@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import morgan from "morgan";
 import { initializeDB } from "./config/db";
 import { authRoutes } from "./modules/auth/auth.routes";
+import { vehiclesRouter } from "./modules/vehicles/vehicles.routes";
 
 
 const app = express();
@@ -18,6 +19,7 @@ initializeDB()
 
 // Import and use routes
 app.use("/api" , authRoutes);
+app.use("/api", vehiclesRouter);
 
 
 // Test route
