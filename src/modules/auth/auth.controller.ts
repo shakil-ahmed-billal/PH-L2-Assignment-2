@@ -48,8 +48,6 @@ const signInUser = async (req: Request, res: Response) => {
       });
     }
 
-    // Password verification logic would go here
-
     res.status(200).json({
       success: true,
       message: "User signed in successfully",
