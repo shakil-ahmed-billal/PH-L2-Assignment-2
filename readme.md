@@ -1,38 +1,63 @@
-# Project Name
+# Vehicle Rental System
 
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+## Project Overview
 
-## Description
+**Vehicle Rental System** is a backend API designed for managing vehicle rentals. It allows customers to view available vehicles, create bookings, and manage their profiles, while administrators can manage vehicles, users, and bookings.
 
-This is a Python project that does XYZ. It provides a convenient way to do ABC by using the following features:
+### Live URL
+[[Live URL](https://assignment-2-nine-smoky.vercel.app)]
 
-- Feature 1
-- Feature 2
-- Feature 3
+---
 
-## Installation
+## Features & Technology Stack
 
-To install this project, follow these steps:
+### Features:
+- **Vehicle Management**: Add, update, and remove vehicles from the system.
+- **Customer Management**: Allows customers to create accounts, view vehicles, and make bookings.
+- **Booking System**: Facilitates vehicle rentals, price calculation, and booking status management.
+- **Authentication**: Secure login and registration with JWT token-based authentication for users and admins.
 
-1. Clone the repository: `git clone https://github.com/yourusername/yourproject.git`
-2. Navigate to the project directory: `cd yourproject`
-3. Install the dependencies: `pip install -r requirements.txt`
+### Technology Stack:
+- **Node.js** + **TypeScript**: Backend development with strong typing.
+- **Express.js**: Framework for building the API.
+- **PostgreSQL**: Relational database for data storage.
+- **bcrypt**: For secure password hashing.
+- **jsonwebtoken**: For JWT-based user authentication.
 
-## Usage
+---
 
-To use this project, simply run the following command:
+## ⚙️ Setup & Usage Instructions
 
-## Contributing
+To set up and run the Vehicle Rental System, follow these steps:
 
-Contributions are welcome! If you find a bug or have a feature request, please open an issue on GitHub. If you'd like to contribute code, please follow these steps:
+### Installation:
+```bash
+npm install
+```
 
-1. Fork the repository
-2. Create a new branch: `git checkout -b feature/your-feature`
-3. Make your changes
-4. Commit your changes: `git commit -m 'Add some feature'`
-5. Push to the branch: `git push origin feature/your-feature`
-6. Submit a pull request
+### Environment Variables:
+- Create a `.env` file in the root directory.
+- Define environment variables for the database connection and JWT secret key.
 
-## License
+```bash
+SECRET_KEY=your_secret_key
+DATABASE_URL=your_database_url
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Start the Server:
+```bash
+npm run dev
+```
+### Server run on port 3000
+- Visit [http://localhost:3000](http://localhost:3000)
+
+### Access the Live API:
+- Visit [https://assignment-2-nine-smoky.vercel.app](https://assignment-2-nine-smoky.vercel.app)
+
+### Prerequisites:
+- **Node.js** and **npm** must be installed on your system.
+
+### 1. Clone the Repository:
+```bash
+git clone <https://github.com/shakil-ahmed-billal/PH-L2-Assignment-2>
+cd vehicle-rental-system
