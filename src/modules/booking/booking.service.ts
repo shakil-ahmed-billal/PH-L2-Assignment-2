@@ -97,15 +97,6 @@ const getAllBookings = async (authUser: any) => {
       console.error("Error fetching bookings for customer:", error.message);
       throw new Error("Unable to fetch bookings for customer.");
     }
-
-  // // Check if the user role is customer
-  // else if (authUser.role == "customer") {
-    
-  // } 
-  // // If the role is unauthorized
-  // else {
-  //   throw new Error("Unauthorized action");
-  // }
 };
 
 const updateBooking = async (
@@ -127,8 +118,6 @@ const updateBooking = async (
     }
 
     const booking = bookingResult.rows[0];
-
-    // Check if the booking's rental period has already started
     const currentDate = new Date();
     const rentStartDate = new Date(booking.rent_start_date);
 
