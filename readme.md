@@ -26,7 +26,7 @@
 
 ---
 
-## ⚙️ Setup & Usage Instructions
+## Setup & Usage Instructions
 
 To set up and run the Vehicle Rental System, follow these steps:
 
