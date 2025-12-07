@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
-import { pool } from "../../config/db";
 import jwt from "jsonwebtoken";
 import config from "../../config/config";
+import { pool } from "../../config/db";
 
 const createUser = async (payload: Record<string, unknown>) => {
   const { name, email, password, phone, role } = payload;
@@ -22,32 +22,31 @@ const createUser = async (payload: Record<string, unknown>) => {
 };
 
 const signInUser = async (email: string, password: string) => {
+  console.log(email, password);
 
-  console.log(email , password)
-
-    const result = await pool.query(
-      `
+  const result = await pool.query(
+    `
         SELECT * FROM users WHERE email = $1;
       `,
-      [email]
-    );
-  
-    const user = result.rows[0];
+    [email]
+  );
 
-    console.log(user)
+  const user = result.rows[0];
 
-    if (!user) {
-      return null;
-    }
+  console.log(user);
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      return null;
-    }
+  if (!user) {
+    return null;
+  }
 
-    console.log(isPasswordValid)
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    return null;
+  }
 
-     const token = jwt.sign(
+  console.log(isPasswordValid);
+
+  const token = jwt.sign(
     { name: user.name, email: user.email, role: user.role },
     config.jwt_secret as string,
     {
@@ -55,9 +54,9 @@ const signInUser = async (email: string, password: string) => {
     }
   );
 
-    console.log(token )
+  const bearerToken = `Bearer ${token}`;
 
-    return {token ,user};
+  return { token: bearerToken, user };
 };
 export const AuthService = {
   createUser,
