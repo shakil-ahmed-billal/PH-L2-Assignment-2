@@ -7,6 +7,9 @@
 ### Live URL
 [[Live URL](https://assignment-2-nine-smoky.vercel.app)]
 
+## Additional Resources
+- **[API Reference](API_REFERENCE.md)** - Detailed endpoint documentation with request/response examples
+
 ---
 
 ## Features & Technology Stack
@@ -61,3 +64,7 @@ npm run dev
 ```bash
 git clone <https://github.com/shakil-ahmed-billal/PH-L2-Assignment-2>
 cd vehicle-rental-system
+
+## Additional Resources
+
+- **[API Reference](API_REFERENCE.md)** - Detailed endpoint documentation with request/response examples
