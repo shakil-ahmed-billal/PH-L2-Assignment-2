@@ -15,7 +15,7 @@ const updateUser = async (
   const { name, email, phone, role } = payload;
   console.log(authUser, payload, userId);
 
-  if (authUser.role === "admin" || authUser.id === userId) {
+  if (authUser.role == "admin" || authUser.id == userId) {
     try {
       const emailCheck = await pool.query(
         `SELECT * FROM users WHERE email = $1 AND id != $2`,
