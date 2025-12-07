@@ -23,7 +23,8 @@ const updateUser = async (req: Request, res: Response) => {
   // Logic to update a user
   try {
     const { userId } = req.params;
-    const result = await userService.updateUser(userId as string, req.body);
+    const authUser = (req as any).user;
+    const result = await userService.updateUser(userId as string, req.body , authUser);
 
     if (!result) {
       return res.status(404).json({

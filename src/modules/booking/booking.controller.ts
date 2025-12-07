@@ -25,7 +25,10 @@ const createBooking = async (req: Request, res: Response) => {
 const getAllBookings = async (req: Request, res: Response) => {
   // Logic to get all bookings
   try {
-    const result = await bookingService.getAllBookings();
+
+    const authUser = (req as any).user;
+
+    const result = await bookingService.getAllBookings(authUser);
 
     res.status(200).json({
       success: true,
@@ -44,10 +47,11 @@ const getAllBookings = async (req: Request, res: Response) => {
 const updateBooking = async (req: Request, res: Response) => {
   // Logic to update a booking
 
-  console.log(req.params);
+  const authUser = (req as any).user; 
+
   try{
     const { bookingId } = req.params;
-    const result = await bookingService.updateBooking(bookingId as string, req.body);
+    const result = await bookingService.updateBooking(bookingId as string, req.body , authUser);
 
     if(!result){
       return res.status(404).json({

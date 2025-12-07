@@ -26,7 +26,7 @@ const initializeDB = async () => {
     type VARCHAR(100) NOT NULL,
     registration_number VARCHAR(100) NOT NULL UNIQUE,
     daily_rent_price NUMERIC(10, 2) NOT NULL,
-    availability_status VARCHAR(50) NOT NULL,
+    availability_status VARCHAR(50) NOT NULL CHECK (availability_status IN ('available', 'booked')),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
   )`);
